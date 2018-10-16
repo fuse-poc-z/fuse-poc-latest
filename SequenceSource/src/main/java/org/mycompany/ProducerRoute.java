@@ -20,6 +20,7 @@ public class ProducerRoute extends RouteBuilder{
 			.setHeader("sequence_num", constant("4"))
 			.log("Step 3 - Sending cim messages to queue")
 			.to("jms:RH.POC.SOURCE.SEQUENCE.REQ")
+			.to("jms:topic:RH.POC.SOURCE.SEQUENCE.REQ")
 			.log("**************Camel route Completed*************");
 
 		from("file:/home/ec2-user/SequenceMessage/inbox?fileName=order1.xml&noop=true").startupOrder(20)
@@ -32,6 +33,7 @@ public class ProducerRoute extends RouteBuilder{
 			.setHeader("sequence_num", constant("1"))
 			.log("Step 3 - Sending cim messages to queue")
 			.to("jms:RH.POC.SOURCE.SEQUENCE.REQ")
+			.to("jms:topic:RH.POC.SOURCE.SEQUENCE.REQ")
 			.log("**************Camel route Completed*************");
 		
 		
@@ -45,6 +47,7 @@ public class ProducerRoute extends RouteBuilder{
 			.setHeader("sequence_num", constant("3"))
 			.log("Step 3 - Sending cim messages to queue")
 			.to("jms:RH.POC.SOURCE.SEQUENCE.REQ")
+			.to("jms:topic:RH.POC.SOURCE.SEQUENCE.REQ")
 			.log("**************Camel route Completed*************");
 		
 		from("file:/home/ec2-user/SequenceMessage/inbox?fileName=order2.xml&noop=true").startupOrder(40)
@@ -57,12 +60,7 @@ public class ProducerRoute extends RouteBuilder{
 			.setHeader("sequence_num", constant("2"))
 			.log("Step 3 - Sending cim messages to queue")
 			.to("jms:RH.POC.SOURCE.SEQUENCE.REQ")
+			.to("jms:topic:RH.POC.SOURCE.SEQUENCE.REQ")
 			.log("**************Camel route Completed*************");
-		
-		//from("file:/home/ec2-user/SequenceMessage/inbox?fileName=order2.xml&noop=true").startupOrder(40)
-		//.setHeader("JMSXGroupID", constant("1"))
-		//.setHeader("JMSXGROUPSEQ", constant("-1"))
-		//.to("jms:RH.POC.SOURCE.SEQUENCE.REQ")
-		//.log("**************Camel route Completed*************");
 	}
 }
