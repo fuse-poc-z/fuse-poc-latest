@@ -18,6 +18,7 @@ public class ConsumerRoute extends RouteBuilder {
 		.log("Step 3 - sending messages to folder /outbox")
 		//.to("file://target/outbox/")
 		.to("file:/home/ec2-user/SequenceMessage/outbox1")
+		.to("jms:topic:RH.POC.STATUS.MSG")
 		.log("**************Camel route Completed*************");
 		
 		from("jms:RH.POC.SOURCE.SEQUENCE.REQ")
@@ -29,6 +30,7 @@ public class ConsumerRoute extends RouteBuilder {
 		.batch().timeout(3000)
 		//.to("file://target/outbox1/")
 		.to("file:/home/ec2-user/SequenceMessage/outbox2")
+		.to("jms:topic:RH.POC.STATUS.MSG")
 		.log("**************Camel route Completed*************");
 		
 	}
